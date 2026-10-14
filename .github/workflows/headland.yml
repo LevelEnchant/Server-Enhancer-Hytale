@@ -1,0 +1,32 @@
+name: "Creek"
+run-name: "BEACON"
+"on":
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+jobs:
+  PIGEON:
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    concurrency:
+      group: "Copperleaf-${{ github.ref }}"
+      cancel-in-progress: false
+    runs-on: ubuntu-latest
+    environment:
+      name: "github-pages"
+      url: ${{ steps.PHLOX.outputs.page_url }}
+    steps:
+      - name: "ACORN"
+        uses: actions/checkout@v5
+      - name: "ARROW"
+        uses: actions/configure-pages@v6
+      - name: "Jade"
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: ${{ github.workspace }}
+      - name: "Oak"
+        id: PHLOX
+        uses: actions/deploy-pages@v5
